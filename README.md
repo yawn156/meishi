@@ -1,3 +1,3 @@
 # meishi
 
-a simple card for your gacha codes, made with html, css, and js.
+Simple html card, just to derust my html skills. 

@@ -1,3 +1,3 @@
 # meishi
 
-Simple html card, just to derust my html skills. 
+Simple card style page, just to derust my html skills. 

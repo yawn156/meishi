@@ -39,4 +39,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const copyFooterButton = document.getElementById('copy-footer-button');
+    if (copyFooterButton) {
+        copyFooterButton.addEventListener('click', () => {
+            const buttonTextSpan = copyFooterButton.querySelector('.button-text');
+            if (buttonTextSpan) {
+                const textToCopy = buttonTextSpan.textContent;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    console.log(`${textToCopy} copied to clipboard`);
+                    const originalText = buttonTextSpan.textContent;
+                    buttonTextSpan.textContent = 'Copied!';
+                    setTimeout(() => {
+                        buttonTextSpan.textContent = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            }
+        });
+    }
 });

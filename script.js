@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         popup.classList.add('show');
         setTimeout(() => {
             popup.classList.remove('show');
-        }, 1500);
+        }, 1000);
     };
 
     const boxes = document.querySelectorAll('.interactive-box');
@@ -16,14 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const textToCopy = codeElement.textContent;
                 navigator.clipboard.writeText(textToCopy).then(() => {
                     console.log(`${textToCopy} copied to clipboard`);
-                    if (window.innerWidth <= 768) {
-                        showPopup();
-                    } else {
-                        box.classList.add('copied');
-                        setTimeout(() => {
-                            box.classList.remove('copied');
-                        }, 2000);
-                    }
+                    showPopup();
                 }).catch(err => {
                     console.error('Failed to copy text: ', err);
                 });

@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.getElementById('popup');
+
+    const showPopup = () => {
+        popup.classList.add('show');
+        setTimeout(() => {
+            popup.classList.remove('show');
+        }, 1500);
+    };
+
     const boxes = document.querySelectorAll('.interactive-box');
     boxes.forEach(box => {
         box.addEventListener('click', () => {
@@ -7,10 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const textToCopy = codeElement.textContent;
                 navigator.clipboard.writeText(textToCopy).then(() => {
                     console.log(`${textToCopy} copied to clipboard`);
-                    box.classList.add('copied');
-                    setTimeout(() => {
-                        box.classList.remove('copied');
-                    }, 2000);
+                    if (window.innerWidth <= 768) {
+                        showPopup();
+                    } else {
+                        box.classList.add('copied');
+                        setTimeout(() => {
+                            box.classList.remove('copied');
+                        }, 2000);
+                    }
                 }).catch(err => {
                     console.error('Failed to copy text: ', err);
                 });
@@ -48,11 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const textToCopy = buttonTextSpan.textContent;
                 navigator.clipboard.writeText(textToCopy).then(() => {
                     console.log(`${textToCopy} copied to clipboard`);
-                    const originalText = buttonTextSpan.textContent;
-                    buttonTextSpan.textContent = 'Copied!';
-                    setTimeout(() => {
-                        buttonTextSpan.textContent = originalText;
-                    }, 2000);
+                    showPopup();
                 }).catch(err => {
                     console.error('Failed to copy text: ', err);
                 });

@@ -1,6 +1,6 @@
 # meishi
 
-Personal bio and links page styled like a Windows 98 desktop. Hosted on GitHub Pages.
+Personal bio and links page styled like a Bimbows 98 desktop. Hosted on GitHub Pages.
 
 Just plain HTML, CSS, and vanilla JavaScript. No build tools or dependencies.
 

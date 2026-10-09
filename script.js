@@ -1,5 +1,5 @@
 /* =========================================================
-   WINDOWS 98 DESKTOP INTERACTIVITY (SILENT / NO AUDIO)
+   BIMBOWS 98 DESKTOP INTERACTIVITY (SILENT / NO AUDIO)
    ========================================================= */
 
 (function () {
@@ -263,10 +263,23 @@
   document.getElementById('btn-dialog-ok')?.addEventListener('click', hideDialog);
 
   // Empty Trash button Easter Egg
+  const trashMessages = [
+    "The quiet you’re left with is just everything you pushed away.",
+    "All Empty!!!",
+    "The strange thing about emptiness is how heavily it settles.",
+    "All Clear!",
+    "Funny how carefully a void gets built, one quiet choice at a time.",
+    "Nothing here!",
+    "What's even left to say when you feel nothing inside."
+  ];
+  let trashClickIndex = 0;
+
   document.getElementById('btn-empty-trash')?.addEventListener('click', () => {
     const container = document.querySelector('.trash-container');
     if (container) {
-      container.innerHTML = '<p style="padding:10px; color:#666; font-style:italic;">The quiet you’re left with is just everything you pushed away.</p>';
+      const msg = trashMessages[trashClickIndex % trashMessages.length];
+      trashClickIndex++;
+      container.innerHTML = `<p style="padding:10px; color:#666; font-style:italic;">${msg}</p>`;
     }
   });
 

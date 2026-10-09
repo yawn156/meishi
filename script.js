@@ -266,7 +266,7 @@
   document.getElementById('btn-empty-trash')?.addEventListener('click', () => {
     const container = document.querySelector('.trash-container');
     if (container) {
-      container.innerHTML = '<p style="padding:10px; color:#666; font-style:italic;">Bin is completely clean! No worries or unfinished projects remaining.</p>';
+      container.innerHTML = '<p style="padding:10px; color:#666; font-style:italic;">The quiet you’re left with is just everything you pushed away.</p>';
     }
   });
 

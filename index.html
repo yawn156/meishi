@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yawn // 98</title>
+  <!-- Open Graph Meta Tags for Twitter / Discord embeds -->
+  <meta property="og:title" content="yawn // 98">
+  <meta property="og:description" content="Meishi card.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#008080">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><text y=%2214%22 font-size=%2214%22>💻</text></svg>">
+</head>
+<body>
+
+  <!-- DESKTOP SCREEN -->
+  <div id="desktop">
+    <!-- Desktop Icons -->
+    <div class="desktop-icons">
+      <div class="desktop-icon" id="icon-about" data-target="win-about">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Retro User / ID Card Icon -->
+            <rect x="2" y="4" width="28" height="24" rx="2" fill="#fff" stroke="#000" stroke-width="1.5"/>
+            <rect x="2" y="4" width="28" height="6" fill="#000080"/>
+            <circle cx="10" cy="17" r="4" fill="#000080"/>
+            <path d="M5 25 Q10 21 15 25" fill="#000080"/>
+            <line x1="18" y1="15" x2="27" y2="15" stroke="#333" stroke-width="2"/>
+            <line x1="18" y1="19" x2="27" y2="19" stroke="#333" stroke-width="2"/>
+            <line x1="18" y1="23" x2="25" y2="23" stroke="#333" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="icon-label">Profile</span>
+      </div>
+
+      <div class="desktop-icon" id="icon-links" data-target="win-links">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Retro Network / World Icon -->
+            <circle cx="16" cy="16" r="13" fill="#3a6ea5" stroke="#000" stroke-width="1.5"/>
+            <ellipse cx="16" cy="16" rx="6" ry="13" fill="none" stroke="#fff" stroke-width="1.2"/>
+            <line x1="3" y1="16" x2="29" y2="16" stroke="#fff" stroke-width="1.2"/>
+            <line x1="5" y1="10" x2="27" y2="10" stroke="#fff" stroke-width="1.2"/>
+            <line x1="5" y1="22" x2="27" y2="22" stroke="#fff" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <span class="icon-label">My Links</span>
+      </div>
+
+      <div class="desktop-icon" id="icon-player" data-target="win-player">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Retro CD / Music Icon -->
+            <circle cx="16" cy="16" r="13" fill="#d4d0c8" stroke="#000" stroke-width="1.5"/>
+            <circle cx="16" cy="16" r="5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+            <circle cx="16" cy="16" r="2" fill="#000"/>
+            <path d="M12 6 A11 11 0 0 1 20 6" stroke="#000080" stroke-width="2" fill="none"/>
+            <path d="M12 26 A11 11 0 0 1 20 26" stroke="#000080" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <span class="icon-label">Media Player</span>
+      </div>
+
+      <div class="desktop-icon" id="icon-readme" data-target="win-readme">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Retro Notepad Icon -->
+            <rect x="5" y="3" width="22" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+            <path d="M5 3 L10 3 L10 8 L5 8 Z" fill="#4169e1"/>
+            <line x1="8" y1="12" x2="23" y2="12" stroke="#777" stroke-width="1.5"/>
+            <line x1="8" y1="16" x2="23" y2="16" stroke="#777" stroke-width="1.5"/>
+            <line x1="8" y1="20" x2="23" y2="20" stroke="#777" stroke-width="1.5"/>
+            <line x1="8" y1="24" x2="18" y2="24" stroke="#777" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="icon-label">aboutme.txt</span>
+      </div>
+
+      <div class="desktop-icon" id="icon-trash" data-target="win-trash">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Recycle Bin -->
+            <rect x="7" y="9" width="18" height="19" fill="#ccc" stroke="#000" stroke-width="1.5"/>
+            <line x1="5" y1="7" x2="27" y2="7" stroke="#000" stroke-width="2"/>
+            <rect x="12" y="4" width="8" height="3" fill="#888" stroke="#000" stroke-width="1"/>
+            <line x1="11" y1="13" x2="11" y2="24" stroke="#444" stroke-width="1.5"/>
+            <line x1="16" y1="13" x2="16" y2="24" stroke="#444" stroke-width="1.5"/>
+            <line x1="21" y1="13" x2="21" y2="24" stroke="#444" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="icon-label">Recycle Bin</span>
+      </div>
+    </div>
+
+    <!-- WINDOW 1: ABOUT ME -->
+    <div class="window" id="win-about" style="top: 40px; left: 105px; width: 430px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon">👤</span> Profile.exe
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <!-- Tab strip -->
+        <div class="tab-strip">
+          <button class="tab-btn active" data-tab="tab-profile">Profile</button>
+          <button class="tab-btn" data-tab="tab-interests">Interests & Projects</button>
+        </div>
+
+        <div class="tab-folder-panel">
+          <div class="tab-content" id="tab-profile">
+            <div class="profile-header">
+              <div class="avatar-frame">
+                <!-- Replace 'avatar.png' in this directory to change your profile picture -->
+                <img src="avatar.png" alt="Avatar" class="avatar-img" id="avatar-img" onerror="this.style.display='none'; document.getElementById('avatar-preview').style.display='flex';">
+                <div class="pixel-avatar" id="avatar-preview" style="display: none;">
+                  <span class="avatar-emoji">🥱</span>
+                </div>
+              </div>
+              <div class="profile-info">
+                <h2 class="user-handle">yawn<span class="moe-badge">atlus.moe</span></h2>
+                <div class="status-box">
+                  <span class="status-indicator">●</span>
+                  <span class="status-text">links and stuff</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="fieldset-box">
+              <legend class="fieldset-legend">Bio</legend>
+              <p class="bio-text">
+                Otaku from the early 2010s. 
+              </p>
+            </div>
+
+            <div class="quick-facts">
+              <div class="fact-row"><b>Location:</b> Chile</div>
+              <div class="fact-row"><b>Timezone:</b> UTC-3</div>
+            </div>
+          </div>
+
+          <div class="tab-content hidden" id="tab-interests">
+            <div class="fieldset-box">
+              <legend class="fieldset-legend">Interests</legend>
+              <div class="tags-cloud">
+                <span class="tag">Oshikatsu and Nuikatsu</span>
+                <span class="tag">Kidou Senkan Nadesico</span>
+                <span class="tag">Blue Archive</span>
+                <span class="tag">The Idolm@ster</span>
+                <span class="tag">Zenless Zone Zero</span>
+                <span class="tag">Mecha anime</span>
+                <span class="tag">Idols</span>
+                <a href="https://anilist.co/user/yawn156/" target="_blank" rel="noopener noreferrer" class="tag">Way too much anime just check my anilist lol ↗</a>
+                <span class="tag">Fighting games</span>
+                <span class="tag">Roguelikes</span>
+              </div>
+            </div>
+
+            <div class="fieldset-box">
+              <legend class="fieldset-legend">Current Projects</legend>
+              <ul class="retro-list">
+                <li>Learning Godot</li>
+                <li>Basic art design for meshes and textures mostly.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 2: MY LINKS -->
+    <div class="window" id="win-links" style="top: 40px; left: 550px; width: 360px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon">🌐</span> My Links
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p class="links-intro">Connect with me across the web:</p>
+
+        <div class="links-container">
+          <!-- Twitter / X -->
+          <a href="https://x.com/re_akuryo" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon">🐦</div>
+            <div class="link-details">
+              <div class="link-title">Twitter / X</div>
+              <div class="link-sub">@re_akuryo</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/yawn156" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon">🐙</div>
+            <div class="link-details">
+              <div class="link-title">GitHub</div>
+              <div class="link-sub">github.com/yawn156</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <!-- AniList -->
+          <a href="https://anilist.co/user/yawn156/" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon">📺</div>
+            <div class="link-details">
+              <div class="link-title">AniList</div>
+              <div class="link-sub">anilist.co/user/yawn156</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <!-- Steam -->
+          <a href="https://steamcommunity.com/id/re_akuryo/" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon">🎮</div>
+            <div class="link-details">
+              <div class="link-title">Steam</div>
+              <div class="link-sub">steamcommunity.com/id/re_akuryo</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="status-bar">
+          <div class="status-field">4 links available</div>
+          <div class="status-field">Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW: MEDIA PLAYER (SUNFADED.MP3) -->
+    <div class="window" id="win-player" style="top: 60px; left: 925px; width: 340px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon">💿</span> Media Player - SUNFADED.MP3
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <audio id="audio-player" src="SUNFADED.mp3" loop preload="auto"></audio>
+        <div class="player-display">
+          <div class="track-title" id="track-name">Track: SUNFADED.mp3</div>
+          <div class="visualizer" id="visualizer">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+          <div class="time-display" id="time-display">00:00 / 00:00</div>
+        </div>
+
+        <!-- Seek / timeline scrubber -->
+        <div class="seek-bar-container">
+          <input type="range" class="retro-range" id="seek-bar" min="0" max="100" value="0" step="0.5">
+        </div>
+
+        <div class="player-controls">
+          <button class="retro-button" id="btn-play">▶ Play</button>
+          <button class="retro-button" id="btn-stop">⏹ Stop</button>
+          <button class="retro-button btn-mute-toggle flashing-unmute" id="btn-mute" title="Click to Unmute / Toggle Mute">
+            <span id="mute-icon">🔇</span> <span id="mute-text">Click to Unmute</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 3: README.TXT -->
+    <div class="window hidden" id="win-readme" style="top: 80px; left: 140px; width: 480px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon">📝</span> aboutme.txt - Notepad
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="menu-bar">
+        <span class="menu-item"><u>F</u>ile</span>
+        <span class="menu-item"><u>E</u>dit</span>
+        <span class="menu-item"><u>S</u>earch</span>
+        <span class="menu-item"><u>H</u>elp</span>
+      </div>
+      <div class="window-body notepad-body">
+        <textarea class="notepad-textarea" readonly>============================================================
+Welcome
+============================================================
+
+28yo guy whose interests scale inversely with his free time.
+I'm a data analyst with background in so many things that don't matter anymore.
+
+Feel free to add me in whatever links I have here.
+For discord it's better if you DM me first, say hi wherever or something. 
+Sorry no questions box because those are evil... really!!!
+
+Watch Nadesico.
+- [yawn]</textarea>
+      </div>
+    </div>
+
+    <!-- WINDOW 4: RECYCLE BIN -->
+    <div class="window hidden" id="win-trash" style="top: 180px; left: 200px; width: 320px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon">🗑️</span> Recycle Bin
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="trash-container">
+          <div class="trash-item">
+            <span class="trash-icon">📁</span>
+            <span class="trash-name">unfinished_projects</span>
+          </div>
+          <div class="trash-item">
+            <span class="trash-icon">🎵</span>
+            <span class="trash-name">SUNFADED.mp3</span>
+          </div>
+        </div>
+        <div class="window-footer">
+          <button class="retro-button" id="btn-empty-trash">Empty Bin</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATION POPUP (Dialog) -->
+    <div class="retro-dialog hidden" id="dialog-box">
+      <div class="dialog-content">
+        <div class="title-bar">
+          <div class="title-bar-text">Notification</div>
+          <button class="btn-close" id="btn-close-dialog">×</button>
+        </div>
+        <div class="dialog-body">
+          <div class="dialog-icon">ℹ️</div>
+          <div class="dialog-message" id="dialog-msg">Notification message</div>
+        </div>
+        <div class="dialog-actions">
+          <button class="retro-button active-btn" id="btn-dialog-ok">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHUT DOWN PROMPT WINDOW -->
+    <div class="retro-dialog hidden" id="shutdown-dialog">
+      <div class="dialog-content" style="width: 260px;">
+        <div class="title-bar">
+          <div class="title-bar-text">
+            <span class="title-icon">💻</span> Shut Down Windows
+          </div>
+        </div>
+        <div class="dialog-body" style="padding: 20px 16px;">
+          <div class="dialog-icon">⏻</div>
+          <div class="dialog-message" id="shutdown-prompt-msg" style="font-size: 13px; font-weight: bold;">byebye</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /desktop -->
+
+  <!-- START MENU POPUP -->
+  <div class="start-menu hidden" id="start-menu">
+    <div class="start-menu-sidebar">
+      <span class="sidebar-text"><b>Windows</b>98</span>
+    </div>
+    <div class="start-menu-items">
+      <div class="menu-entry" data-action="open-about">
+        <span class="menu-entry-icon">👤</span>
+        <span class="menu-entry-label">Profile</span>
+      </div>
+      <div class="menu-entry" data-action="open-links">
+        <span class="menu-entry-icon">🌐</span>
+        <span class="menu-entry-label">My Links</span>
+      </div>
+      <div class="menu-entry" data-action="open-player">
+        <span class="menu-entry-icon">💿</span>
+        <span class="menu-entry-label">Media Player</span>
+      </div>
+      <div class="menu-entry" data-action="open-readme">
+        <span class="menu-entry-icon">📝</span>
+        <span class="menu-entry-label">aboutme.txt</span>
+      </div>
+      <div class="menu-divider"></div>
+      <div class="menu-entry" data-action="shutdown">
+        <span class="menu-entry-icon">⏻</span>
+        <span class="menu-entry-label">Shut Down...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TASKBAR -->
+  <div id="taskbar">
+    <button class="start-button" id="start-button">
+      <svg class="win-logo" viewBox="0 0 16 16" width="16" height="16">
+        <rect x="1" y="1" width="6" height="6" fill="#f25022"/>
+        <rect x="9" y="1" width="6" height="6" fill="#7fba00"/>
+        <rect x="1" y="9" width="6" height="6" fill="#00a4ef"/>
+        <rect x="9" y="9" width="6" height="6" fill="#ffb900"/>
+      </svg>
+      <span>Start</span>
+    </button>
+
+    <div class="taskbar-divider"></div>
+
+    <!-- Active Window Task Buttons -->
+    <div class="taskbar-tasks" id="taskbar-tasks">
+      <!-- Injected dynamically via script.js -->
+    </div>
+
+    <!-- System Tray -->
+    <div class="system-tray">
+      <span class="tray-clock" id="tray-clock">12:00 PM</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # meishi
 
-Personal bio and links page styled like a Windows 98 desktop. Hosted on GitHub Pages for [atlus.moe](https://atlus.moe).
+Personal bio and links page styled like a Windows 98 desktop. Hosted on GitHub Pages.
 
 Just plain HTML, CSS, and vanilla JavaScript. No build tools or dependencies.
 
@@ -14,7 +14,6 @@ meishi/
 ├── wallpaper.webp    # desktop background image
 ├── avatar.png        # profile picture
 ├── SUNFADED.mp3      # audio track
-├── CNAME             # domain configuration
 └── README.md
 ```
 

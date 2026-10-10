@@ -531,7 +531,7 @@ a.tag:active {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: 280px;
+  max-height: none;
   overflow-y: auto;
   padding-right: 2px;
 }
@@ -1122,7 +1122,7 @@ a.tag:active {
   }
   #win-player {
     left: 485px;
-    top: 280px;
+    top: 420px;
     width: 340px;
   }
 }
@@ -1147,8 +1147,8 @@ a.tag:active {
 
   /* Links below; shifts up to overlap gently on smaller viewports */
   #win-links {
-    top: min(268px, max(45px, calc(100vh - 30px - 310px)));
-    top: min(268px, max(45px, calc(100dvh - 30px - 310px)));
+    top: min(268px, max(45px, calc(100vh - 30px - 365px)));
+    top: min(268px, max(45px, calc(100dvh - 30px - 365px)));
     left: 2.5vw;
     width: 95vw;
   }
@@ -1214,7 +1214,7 @@ a.tag:active {
   /* Compact link items to fit cleanly below profile */
   .links-container {
     gap: 5px;
-    max-height: 235px;
+    max-height: none;
   }
 
   .link-card {
@@ -1236,5 +1236,10 @@ a.tag:active {
   .tag {
     padding: 2px 5px;
     font-size: 10px;
+  }
+
+  /* Extended height for aboutme.txt so all text displays without scrolling */
+  .notepad-textarea {
+    height: 450px;
   }
 }

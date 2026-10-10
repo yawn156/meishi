@@ -273,8 +273,26 @@
     "What's even left to say when you feel nothing inside."
   ];
   let trashClickIndex = 0;
+  let trashAudioTimeout = null;
+  let trashFirstClickDone = false;
 
   document.getElementById('btn-empty-trash')?.addEventListener('click', () => {
+    // If paused from the first click and button is pressed again early to see subsequent messages
+    if (trashAudioTimeout) {
+      clearTimeout(trashAudioTimeout);
+      trashAudioTimeout = null;
+      playAudio();
+    } else if (!trashFirstClickDone) {
+      trashFirstClickDone = true;
+      if (!audioPlayer.paused) {
+        pauseAudio();
+        trashAudioTimeout = setTimeout(() => {
+          trashAudioTimeout = null;
+          playAudio();
+        }, 3000);
+      }
+    }
+
     const container = document.querySelector('.trash-container');
     if (container) {
       const msg = trashMessages[trashClickIndex % trashMessages.length];
@@ -475,6 +493,10 @@
 
   // Play / Pause Toggle
   btnPlay?.addEventListener('click', () => {
+    if (trashAudioTimeout) {
+      clearTimeout(trashAudioTimeout);
+      trashAudioTimeout = null;
+    }
     if (audioPlayer.paused) {
       unmuteAudio();
       playAudio();
@@ -485,6 +507,10 @@
 
   // Stop Button
   btnStop?.addEventListener('click', () => {
+    if (trashAudioTimeout) {
+      clearTimeout(trashAudioTimeout);
+      trashAudioTimeout = null;
+    }
     stopAudio();
   });
 

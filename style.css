@@ -1147,8 +1147,8 @@ a.tag:active {
 
   /* Links below; shifts up to overlap gently on smaller viewports */
   #win-links {
-    top: min(252px, max(45px, calc(100vh - 30px - 310px)));
-    top: min(252px, max(45px, calc(100dvh - 30px - 310px)));
+    top: min(268px, max(45px, calc(100vh - 30px - 310px)));
+    top: min(268px, max(45px, calc(100dvh - 30px - 310px)));
     left: 2.5vw;
     width: 95vw;
   }

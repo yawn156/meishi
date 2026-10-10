@@ -45,6 +45,7 @@ body, html {
   position: relative;
   width: 100vw;
   height: calc(100vh - 30px);
+  height: calc(100dvh - 30px);
   overflow: hidden;
   background-color: var(--teal-bg);
   /* Desktop Wallpaper: replace 'wallpaper.webp' in retro-intro to change */
@@ -138,6 +139,37 @@ body, html {
 
 .window.minimized {
   display: none !important;
+}
+
+/* Default Window Positions (Desktop) */
+#win-about {
+  top: 40px;
+  left: 105px;
+  width: 430px;
+}
+
+#win-links {
+  top: 40px;
+  left: 550px;
+  width: 360px;
+}
+
+#win-player {
+  top: 60px;
+  left: 925px;
+  width: 340px;
+}
+
+#win-readme {
+  top: 80px;
+  left: 140px;
+  width: 480px;
+}
+
+#win-trash {
+  top: 180px;
+  left: 200px;
+  width: 320px;
 }
 
 /* Title Bar */
@@ -1079,30 +1111,64 @@ a.tag:active {
    ========================================================= */
 @media (min-width: 769px) and (max-width: 960px) {
   #win-about {
-    left: 95px !important;
-    top: 25px !important;
-    width: 380px !important;
+    left: 95px;
+    top: 25px;
+    width: 380px;
   }
   #win-links {
-    left: 485px !important;
-    top: 25px !important;
-    width: 340px !important;
+    left: 485px;
+    top: 25px;
+    width: 340px;
   }
   #win-player {
-    left: 485px !important;
-    top: 280px !important;
-    width: 340px !important;
+    left: 485px;
+    top: 280px;
+    width: 340px;
   }
 }
 
 @media (max-width: 768px) {
   .window {
-    position: fixed !important;
-    top: 15px !important;
-    left: 2.5vw !important;
-    width: 95vw !important;
-    max-height: calc(100vh - 50px);
+    left: 2.5vw;
+    width: 95vw;
+    max-width: 95vw;
+    min-width: 0;
+    max-height: calc(100vh - 40px);
+    max-height: calc(100dvh - 40px);
     overflow-y: auto;
+  }
+
+  /* Profile above */
+  #win-about {
+    top: 10px;
+    left: 2.5vw;
+    width: 95vw;
+  }
+
+  /* Links below; shifts up to overlap gently on smaller viewports */
+  #win-links {
+    top: min(252px, max(45px, calc(100vh - 30px - 310px)));
+    top: min(252px, max(45px, calc(100dvh - 30px - 310px)));
+    left: 2.5vw;
+    width: 95vw;
+  }
+
+  #win-player {
+    top: 60px;
+    left: 2.5vw;
+    width: 95vw;
+  }
+
+  #win-readme {
+    top: 35px;
+    left: 2.5vw;
+    width: 95vw;
+  }
+
+  #win-trash {
+    top: 75px;
+    left: 2.5vw;
+    width: 95vw;
   }
 
   .desktop-icons {
@@ -1122,6 +1188,53 @@ a.tag:active {
   .task-button {
     min-width: 80px;
     max-width: 110px;
+    font-size: 10px;
+  }
+
+  /* Compact profile header and panel padding on phone view */
+  .profile-header {
+    padding: 6px;
+    gap: 10px;
+  }
+
+  .avatar-frame {
+    width: 56px;
+    height: 56px;
+  }
+
+  .fieldset-box {
+    padding: 6px 8px;
+  }
+
+  .window-body {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  /* Compact link items to fit cleanly below profile */
+  .links-container {
+    gap: 5px;
+    max-height: 235px;
+  }
+
+  .link-card {
+    padding: 5px 8px;
+  }
+
+  .link-title {
+    font-size: 11px;
+  }
+
+  .link-sub {
+    font-size: 10px;
+  }
+
+  .tags-cloud {
+    gap: 3px;
+  }
+
+  .tag {
+    padding: 2px 5px;
     font-size: 10px;
   }
 }

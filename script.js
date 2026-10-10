@@ -82,10 +82,10 @@
   function toggleMaximize(win) {
     if (!win) return;
     if (win.dataset.maximized === 'true') {
-      win.style.top = win.dataset.origTop || '40px';
-      win.style.left = win.dataset.origLeft || '100px';
-      win.style.width = win.dataset.origWidth || '440px';
-      win.style.height = win.dataset.origHeight || 'auto';
+      win.style.top = win.dataset.origTop !== undefined ? win.dataset.origTop : '';
+      win.style.left = win.dataset.origLeft !== undefined ? win.dataset.origLeft : '';
+      win.style.width = win.dataset.origWidth !== undefined ? win.dataset.origWidth : '';
+      win.style.height = win.dataset.origHeight !== undefined ? win.dataset.origHeight : '';
       win.dataset.maximized = 'false';
     } else {
       win.dataset.origTop = win.style.top;
@@ -526,13 +526,25 @@
     seekBar.addEventListener('touchend', () => { isUserSeeking = false; });
   }
 
-  // Start playing immediately on render (browser allows muted autoplay without clicks)
-  playAudio();
-  updateMuteUI();
+  // Window initialization and responsive behavior
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-  // Initial Window state (all 3 non-overlapping windows open on load)
-  bringToFront(document.getElementById('win-about'));
-  bringToFront(document.getElementById('win-links'));
-  bringToFront(document.getElementById('win-player'));
+  if (isMobile) {
+    // Phone view: no need to open the music app in this state
+    const winPlayer = document.getElementById('win-player');
+    if (winPlayer) {
+      winPlayer.classList.add('hidden');
+    }
+    // Avoid overlapping as much as possible with Profile above and Links below
+    bringToFront(document.getElementById('win-links'));
+    bringToFront(document.getElementById('win-about'));
+  } else {
+    // Desktop: start muted autoplay and open all 3 windows side-by-side
+    playAudio();
+    updateMuteUI();
+    bringToFront(document.getElementById('win-about'));
+    bringToFront(document.getElementById('win-links'));
+    bringToFront(document.getElementById('win-player'));
+  }
   updateTaskbar();
 })();

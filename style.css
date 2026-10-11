@@ -1122,7 +1122,7 @@ a.tag:active {
   }
   #win-player {
     left: 485px;
-    top: 420px;
+    top: 470px;
     width: 340px;
   }
 }
@@ -1147,8 +1147,8 @@ a.tag:active {
 
   /* Links below; shifts up to overlap gently on smaller viewports */
   #win-links {
-    top: min(268px, max(45px, calc(100vh - 30px - 365px)));
-    top: min(268px, max(45px, calc(100dvh - 30px - 365px)));
+    top: min(268px, max(45px, calc(100vh - 30px - 415px)));
+    top: min(268px, max(45px, calc(100dvh - 30px - 415px)));
     left: 2.5vw;
     width: 95vw;
   }

@@ -401,6 +401,41 @@
   let spectrumRafId = null;
   const binMap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14];
 
+  // Pre-decoded PCM buffer so the real sound spectrum plays even while muted on initial load
+  let pcmChannelData = null;
+  let pcmSampleRate = 44100;
+  const FFT_SIZE = 64;
+  const smoothedBins = new Float32Array(binMap.length);
+  const blackmanWindow = new Float32Array(FFT_SIZE);
+  const cosTable = binMap.map(() => new Float32Array(FFT_SIZE));
+  const sinTable = binMap.map(() => new Float32Array(FFT_SIZE));
+
+  for (let n = 0; n < FFT_SIZE; n++) {
+    blackmanWindow[n] = 0.42 - 0.5 * Math.cos((2 * Math.PI * n) / FFT_SIZE) + 0.08 * Math.cos((4 * Math.PI * n) / FFT_SIZE);
+    for (let b = 0; b < binMap.length; b++) {
+      const angle = (2 * Math.PI * binMap[b] * n) / FFT_SIZE;
+      cosTable[b][n] = Math.cos(angle);
+      sinTable[b][n] = Math.sin(angle);
+    }
+  }
+
+  // Decode SUNFADED.mp3 in the background via OfflineAudioContext (works without user gesture while muted)
+  (function preloadSpectrumBuffer() {
+    const OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if (!OfflineCtx || typeof fetch !== 'function') return;
+    fetch('SUNFADED.mp3')
+      .then(res => res.ok ? res.arrayBuffer() : Promise.reject())
+      .then(buf => {
+        const offlineCtx = new OfflineCtx(1, 1, 44100);
+        return offlineCtx.decodeAudioData(buf);
+      })
+      .then(audioBuffer => {
+        pcmSampleRate = audioBuffer.sampleRate;
+        pcmChannelData = audioBuffer.getChannelData(0);
+      })
+      .catch(() => {});
+  })();
+
   function initAudioContext() {
     if (!audioCtx) {
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -408,7 +443,7 @@
       try {
         audioCtx = new AudioContextClass();
         analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 64;
+        analyser.fftSize = FFT_SIZE;
         analyser.smoothingTimeConstant = 0.75;
         freqData = new Uint8Array(analyser.frequencyBinCount);
 
@@ -436,30 +471,48 @@
   function renderSpectrum() {
     if (audioPlayer.paused) {
       spectrumRafId = null;
-      visualizerBars.forEach(bar => { bar.style.height = '15%'; });
+      visualizerBars.forEach(bar => { bar.style.height = '10%'; });
       return;
     }
 
-    if (analyser && freqData && audioCtx && audioCtx.state === 'running') {
-      analyser.getByteFrequencyData(freqData);
-      let hasSignal = false;
-      for (let i = 0; i < freqData.length; i++) {
-        if (freqData[i] > 0) {
-          hasSignal = true;
-          break;
-        }
-      }
+    if (pcmChannelData) {
+      // Compute real frequency spectrum directly from decoded PCM at current playback time (works even while muted!)
+      const centerIdx = Math.floor((audioPlayer.currentTime || 0) * pcmSampleRate) % pcmChannelData.length;
+      const startIdx = Math.max(0, Math.min(pcmChannelData.length - FFT_SIZE, centerIdx));
 
-      if (hasSignal && visualizer) {
-        visualizer.classList.add('spectrum-active');
-        visualizerBars.forEach((bar, idx) => {
-          const bin = binMap[idx] !== undefined ? binMap[idx] : idx;
-          const boost = 1 + idx * 0.04;
-          const normalized = Math.min(1, (freqData[bin] / 255) * boost);
-          const heightPct = Math.max(10, Math.round(normalized * 98));
-          bar.style.height = `${heightPct}%`;
-        });
-      }
+      visualizerBars.forEach((bar, idx) => {
+        let re = 0;
+        let im = 0;
+        const cRow = cosTable[idx];
+        const sRow = sinTable[idx];
+        for (let n = 0; n < FFT_SIZE; n++) {
+          const sample = pcmChannelData[startIdx + n] * blackmanWindow[n];
+          re += sample * cRow[n];
+          im -= sample * sRow[n];
+        }
+        const mag = Math.hypot(re, im) / FFT_SIZE;
+        smoothedBins[idx] = 0.75 * smoothedBins[idx] + 0.25 * mag;
+
+        // Convert magnitude to dB range [-100dB, -30dB] matching Web Audio AnalyserNode
+        const db = 20 * Math.log10(Math.max(smoothedBins[idx], 1e-5));
+        const byteVal = Math.max(0, Math.min(255, ((db + 100) / 70) * 255));
+        const boost = 1 + idx * 0.04;
+        const normalized = Math.min(1, (byteVal / 255) * boost);
+        const heightPct = Math.max(10, Math.round(normalized * 98));
+        bar.style.height = `${heightPct}%`;
+      });
+    } else if (analyser && freqData && audioCtx && audioCtx.state === 'running') {
+      analyser.getByteFrequencyData(freqData);
+      visualizerBars.forEach((bar, idx) => {
+        const bin = binMap[idx] !== undefined ? binMap[idx] : idx;
+        const boost = 1 + idx * 0.04;
+        const normalized = Math.min(1, (freqData[bin] / 255) * boost);
+        const heightPct = Math.max(10, Math.round(normalized * 98));
+        bar.style.height = `${heightPct}%`;
+      });
+    } else {
+      // If neither is ready yet, stay flat rather than playing a mismatched fake animation
+      visualizerBars.forEach(bar => { bar.style.height = '10%'; });
     }
 
     spectrumRafId = requestAnimationFrame(renderSpectrum);
@@ -476,7 +529,7 @@
       cancelAnimationFrame(spectrumRafId);
       spectrumRafId = null;
     }
-    visualizerBars.forEach(bar => { bar.style.height = '15%'; });
+    visualizerBars.forEach(bar => { bar.style.height = '10%'; });
   }
 
   // Unlock AudioContext on first user interaction anywhere on the page

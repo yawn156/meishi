@@ -730,22 +730,26 @@ a.tag:active {
 .visualizer .bar {
   flex: 1;
   background-color: #00ff66;
-  height: 20%;
+  height: 15%;
   transition: height 0.1s ease;
 }
 
-.visualizer.playing .bar:nth-child(1) { animation: bounce 0.4s infinite alternate; }
-.visualizer.playing .bar:nth-child(2) { animation: bounce 0.6s infinite alternate; }
-.visualizer.playing .bar:nth-child(3) { animation: bounce 0.3s infinite alternate; }
-.visualizer.playing .bar:nth-child(4) { animation: bounce 0.5s infinite alternate; }
-.visualizer.playing .bar:nth-child(5) { animation: bounce 0.7s infinite alternate; }
-.visualizer.playing .bar:nth-child(6) { animation: bounce 0.4s infinite alternate; }
-.visualizer.playing .bar:nth-child(7) { animation: bounce 0.8s infinite alternate; }
-.visualizer.playing .bar:nth-child(8) { animation: bounce 0.5s infinite alternate; }
-.visualizer.playing .bar:nth-child(9) { animation: bounce 0.3s infinite alternate; }
-.visualizer.playing .bar:nth-child(10) { animation: bounce 0.6s infinite alternate; }
-.visualizer.playing .bar:nth-child(11) { animation: bounce 0.4s infinite alternate; }
-.visualizer.playing .bar:nth-child(12) { animation: bounce 0.7s infinite alternate; }
+.visualizer.spectrum-active .bar {
+  transition: height 0.05s linear;
+}
+
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(1) { animation: bounce 0.4s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(2) { animation: bounce 0.6s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(3) { animation: bounce 0.3s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(4) { animation: bounce 0.5s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(5) { animation: bounce 0.7s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(6) { animation: bounce 0.4s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(7) { animation: bounce 0.8s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(8) { animation: bounce 0.5s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(9) { animation: bounce 0.3s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(10) { animation: bounce 0.6s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(11) { animation: bounce 0.4s infinite alternate; }
+.visualizer.playing:not(.spectrum-active) .bar:nth-child(12) { animation: bounce 0.7s infinite alternate; }
 
 @keyframes bounce {
   0% { height: 15%; }

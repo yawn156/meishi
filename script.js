@@ -369,12 +369,15 @@
   }
 
   // =========================================================
-  // AUDIO PLAYER (SUNFADED.MP3 - AUTO PLAY & LOOP)
+  // AUDIO PLAYER (SUNFADED.MP3 - AUTO PLAY & LOOP + REAL SPECTRUM)
   // Starts muted to guarantee instant autoplay in all browsers
   // =========================================================
   const audioPlayer = document.getElementById('audio-player') || new Audio('SUNFADED.mp3');
+  const TARGET_VOLUME = 0.01; // 1% volume
+  let isMuted = true;
+
   audioPlayer.loop = true;
-  audioPlayer.volume = 0.01; // 1% volume
+  audioPlayer.volume = TARGET_VOLUME;
   audioPlayer.muted = true;  // Muted initially so browsers allow instant autoplay without clicks
 
   const btnPlay = document.getElementById('btn-play');
@@ -383,15 +386,124 @@
   const muteIcon = document.getElementById('mute-icon');
   const muteText = document.getElementById('mute-text');
   const visualizer = document.getElementById('visualizer');
+  const visualizerBars = visualizer ? Array.from(visualizer.querySelectorAll('.bar')) : [];
   const timeDisplay = document.getElementById('time-display');
   const seekBar = document.getElementById('seek-bar');
   const trackNameEl = document.getElementById('track-name');
 
   let isUserSeeking = false;
 
+  // Web Audio API Spectrum Analyser State
+  let audioCtx = null;
+  let analyser = null;
+  let gainNode = null;
+  let freqData = null;
+  let spectrumRafId = null;
+  const binMap = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14];
+
+  function initAudioContext() {
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      try {
+        audioCtx = new AudioContextClass();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 64;
+        analyser.smoothingTimeConstant = 0.75;
+        freqData = new Uint8Array(analyser.frequencyBinCount);
+
+        gainNode = audioCtx.createGain();
+        gainNode.gain.value = isMuted ? 0 : TARGET_VOLUME;
+
+        const source = audioCtx.createMediaElementSource(audioPlayer);
+        source.connect(analyser);
+        analyser.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        // Let gainNode handle the 1% volume & mute so AnalyserNode receives full signal
+        audioPlayer.volume = 1.0;
+        audioPlayer.muted = false;
+      } catch (e) {
+        audioCtx = null;
+      }
+    }
+
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+  }
+
+  function renderSpectrum() {
+    if (audioPlayer.paused) {
+      spectrumRafId = null;
+      visualizerBars.forEach(bar => { bar.style.height = '15%'; });
+      return;
+    }
+
+    if (analyser && freqData && audioCtx && audioCtx.state === 'running') {
+      analyser.getByteFrequencyData(freqData);
+      let hasSignal = false;
+      for (let i = 0; i < freqData.length; i++) {
+        if (freqData[i] > 0) {
+          hasSignal = true;
+          break;
+        }
+      }
+
+      if (hasSignal && visualizer) {
+        visualizer.classList.add('spectrum-active');
+        visualizerBars.forEach((bar, idx) => {
+          const bin = binMap[idx] !== undefined ? binMap[idx] : idx;
+          const boost = 1 + idx * 0.04;
+          const normalized = Math.min(1, (freqData[bin] / 255) * boost);
+          const heightPct = Math.max(10, Math.round(normalized * 98));
+          bar.style.height = `${heightPct}%`;
+        });
+      }
+    }
+
+    spectrumRafId = requestAnimationFrame(renderSpectrum);
+  }
+
+  function startSpectrumLoop() {
+    if (!spectrumRafId) {
+      spectrumRafId = requestAnimationFrame(renderSpectrum);
+    }
+  }
+
+  function stopSpectrumLoop() {
+    if (spectrumRafId) {
+      cancelAnimationFrame(spectrumRafId);
+      spectrumRafId = null;
+    }
+    visualizerBars.forEach(bar => { bar.style.height = '15%'; });
+  }
+
+  // Unlock AudioContext on first user interaction anywhere on the page
+  const unlockOnGesture = () => {
+    initAudioContext();
+    if (audioCtx && audioCtx.state === 'running') {
+      document.removeEventListener('click', unlockOnGesture);
+      document.removeEventListener('keydown', unlockOnGesture);
+    }
+  };
+  document.addEventListener('click', unlockOnGesture);
+  document.addEventListener('keydown', unlockOnGesture);
+
+  function syncAudioGain() {
+    if (gainNode && audioCtx) {
+      gainNode.gain.value = isMuted ? 0 : TARGET_VOLUME;
+      audioPlayer.muted = false;
+      audioPlayer.volume = 1.0;
+    } else {
+      audioPlayer.muted = isMuted;
+      audioPlayer.volume = TARGET_VOLUME;
+    }
+  }
+
   function updateMuteUI() {
     if (!btnMute) return;
-    if (audioPlayer.muted) {
+    if (isMuted) {
       btnMute.classList.add('flashing-unmute');
       if (muteIcon) muteIcon.textContent = '🔇';
       if (muteText) muteText.textContent = 'Click to Unmute';
@@ -405,14 +517,18 @@
   }
 
   function unmuteAudio() {
-    if (audioPlayer.muted) {
-      audioPlayer.muted = false;
+    initAudioContext();
+    if (isMuted) {
+      isMuted = false;
+      syncAudioGain();
       updateMuteUI();
     }
   }
 
   function toggleMute() {
-    audioPlayer.muted = !audioPlayer.muted;
+    initAudioContext();
+    isMuted = !isMuted;
+    syncAudioGain();
     updateMuteUI();
   }
 
@@ -446,10 +562,12 @@
       playPromise.then(() => {
         if (btnPlay) btnPlay.textContent = '❚❚ Pause';
         if (visualizer) visualizer.classList.add('playing');
+        startSpectrumLoop();
       }).catch(() => {
         // Fallback if browser is extra restrictive
         if (btnPlay) btnPlay.textContent = '▶ Play';
         if (visualizer) visualizer.classList.remove('playing');
+        stopSpectrumLoop();
       });
     }
   }
@@ -458,6 +576,7 @@
     audioPlayer.pause();
     if (btnPlay) btnPlay.textContent = '▶ Play';
     if (visualizer) visualizer.classList.remove('playing');
+    stopSpectrumLoop();
   }
 
   function stopAudio() {
@@ -465,6 +584,7 @@
     audioPlayer.currentTime = 0;
     if (btnPlay) btnPlay.textContent = '▶ Play';
     if (visualizer) visualizer.classList.remove('playing');
+    stopSpectrumLoop();
     updatePlayerUI();
   }
 
@@ -472,11 +592,13 @@
   audioPlayer.addEventListener('play', () => {
     if (btnPlay) btnPlay.textContent = '❚❚ Pause';
     if (visualizer) visualizer.classList.add('playing');
+    startSpectrumLoop();
   });
 
   audioPlayer.addEventListener('pause', () => {
     if (btnPlay) btnPlay.textContent = '▶ Play';
     if (visualizer) visualizer.classList.remove('playing');
+    stopSpectrumLoop();
   });
 
   audioPlayer.addEventListener('timeupdate', () => {

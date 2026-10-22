@@ -264,13 +264,19 @@
 
   // Empty Trash button Easter Egg
   const trashMessages = [
-    "The quiet you’re left with is just everything you pushed away.",
+    "What's even left to say when you feel nothing inside.",
     "All Empty!!!",
-    "The strange thing about emptiness is how heavily it settles.",
-    "All Clear!",
-    "Funny how carefully a void gets built, one quiet choice at a time.",
-    "Nothing here!",
-    "What's even left to say when you feel nothing inside."
+    "There was no lesson.",
+    "Nothing here.",
+    "But I hope you remember me in a good light.",
+    "Bin empty!",
+    "Nothing to delete",
+    "I flushed everything away",
+    "Even the logs so don't worry",
+    "No files found.",
+    "Error",
+    "Error",
+    "ERROR"
   ];
   let trashClickIndex = 0;
   let trashAudioTimeout = null;

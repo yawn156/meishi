@@ -661,12 +661,14 @@ a.tag:active {
 
 .notepad-textarea {
   width: 100%;
-  height: 325px;
+  height: 365px;
   font-family: var(--font-pixel);
   font-size: 12px;
   line-height: 1.5;
   padding: 10px 12px;
   text-align: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
   border-top: 2px solid var(--win-dark);
   border-left: 2px solid var(--win-dark);
   border-right: 2px solid var(--win-light);
@@ -676,8 +678,22 @@ a.tag:active {
   resize: none;
   outline: none;
   overflow-x: hidden;
+  overflow-y: auto;
   user-select: text;
   -webkit-user-select: text;
+}
+
+.notepad-textarea a {
+  color: var(--link-color);
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.notepad-textarea a:hover {
+  background-color: #000080;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* =========================================================

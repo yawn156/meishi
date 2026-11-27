@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yawn // 98</title>
+  <!-- Open Graph Meta Tags for Twitter / Discord embeds -->
+  <meta property="og:title" content="yawn // 98">
+  <meta property="og:description" content="Meishi card.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yawn.gdd.moe/">
+  <meta property="og:image" content="https://yawn.gdd.moe/avatar.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#008080">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="kou.jpg">
+</head>
+<body>
+
+  <!-- DESKTOP SCREEN -->
+  <div id="desktop">
+    <!-- Desktop Icons -->
+    <div class="desktop-icons">
+      <div class="desktop-icon" id="icon-about" data-target="win-about">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Retro User / ID Card Icon -->
+            <rect x="2" y="4" width="28" height="24" rx="2" fill="#fff" stroke="#000" stroke-width="1.5"/>
+            <rect x="2" y="4" width="28" height="6" fill="#000080"/>
+            <circle cx="10" cy="17" r="4" fill="#000080"/>
+            <path d="M5 25 Q10 21 15 25" fill="#000080"/>
+            <line x1="18" y1="15" x2="27" y2="15" stroke="#333" stroke-width="2"/>
+            <line x1="18" y1="19" x2="27" y2="19" stroke="#333" stroke-width="2"/>
+            <line x1="18" y1="23" x2="25" y2="23" stroke="#333" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="icon-label">Profile</span>
+      </div>
+
+      <div class="desktop-icon" id="icon-links" data-target="win-links">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Retro Network / World Icon -->
+            <circle cx="16" cy="16" r="13" fill="#3a6ea5" stroke="#000" stroke-width="1.5"/>
+            <ellipse cx="16" cy="16" rx="6" ry="13" fill="none" stroke="#fff" stroke-width="1.2"/>
+            <line x1="3" y1="16" x2="29" y2="16" stroke="#fff" stroke-width="1.2"/>
+            <line x1="5" y1="10" x2="27" y2="10" stroke="#fff" stroke-width="1.2"/>
+            <line x1="5" y1="22" x2="27" y2="22" stroke="#fff" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <span class="icon-label">My Links</span>
+      </div>
+
+      <div class="desktop-icon" id="icon-player" data-target="win-player">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Retro CD / Music Icon -->
+            <circle cx="16" cy="16" r="13" fill="#d4d0c8" stroke="#000" stroke-width="1.5"/>
+            <circle cx="16" cy="16" r="5" fill="#fff" stroke="#000" stroke-width="1.2"/>
+            <circle cx="16" cy="16" r="2" fill="#000"/>
+            <path d="M12 6 A11 11 0 0 1 20 6" stroke="#000080" stroke-width="2" fill="none"/>
+            <path d="M12 26 A11 11 0 0 1 20 26" stroke="#000080" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <span class="icon-label">Media Player</span>
+      </div>
+
+      <div class="desktop-icon" id="icon-readme" data-target="win-readme">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Retro Notepad Icon -->
+            <rect x="5" y="3" width="22" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+            <path d="M5 3 L10 3 L10 8 L5 8 Z" fill="#4169e1"/>
+            <line x1="8" y1="12" x2="23" y2="12" stroke="#777" stroke-width="1.5"/>
+            <line x1="8" y1="16" x2="23" y2="16" stroke="#777" stroke-width="1.5"/>
+            <line x1="8" y1="20" x2="23" y2="20" stroke="#777" stroke-width="1.5"/>
+            <line x1="8" y1="24" x2="18" y2="24" stroke="#777" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="icon-label">aboutme.txt</span>
+      </div>
+
+      <div class="desktop-icon" id="icon-trash" data-target="win-trash">
+        <div class="icon-graphic">
+          <svg viewBox="0 0 32 32" width="32" height="32">
+            <!-- Recycle Bin -->
+            <rect x="7" y="9" width="18" height="19" fill="#ccc" stroke="#000" stroke-width="1.5"/>
+            <line x1="5" y1="7" x2="27" y2="7" stroke="#000" stroke-width="2"/>
+            <rect x="12" y="4" width="8" height="3" fill="#888" stroke="#000" stroke-width="1"/>
+            <line x1="11" y1="13" x2="11" y2="24" stroke="#444" stroke-width="1.5"/>
+            <line x1="16" y1="13" x2="16" y2="24" stroke="#444" stroke-width="1.5"/>
+            <line x1="21" y1="13" x2="21" y2="24" stroke="#444" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <span class="icon-label">Recycle Bin</span>
+      </div>
+    </div>
+
+    <!-- WINDOW 1: ABOUT ME -->
+    <div class="window" id="win-about">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="2" width="14" height="12" rx="1" fill="#fff" stroke="#000" stroke-width="1"/><rect x="1" y="2" width="14" height="3" fill="#000080"/><circle cx="5" cy="9" r="2" fill="#000080"/><path d="M2.5 13 Q5 11 7.5 13" fill="#000080"/><line x1="9" y1="8" x2="13.5" y2="8" stroke="#333" stroke-width="1.2"/><line x1="9" y1="11" x2="13" y2="11" stroke="#333" stroke-width="1.2"/></svg></span> Profile.exe
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <!-- Tab strip -->
+        <div class="tab-strip">
+          <button class="tab-btn active" data-tab="tab-profile">Profile</button>
+          <button class="tab-btn" data-tab="tab-interests">Interests & Projects</button>
+        </div>
+
+        <div class="tab-folder-panel">
+          <div class="tab-content" id="tab-profile">
+            <div class="profile-header">
+              <div class="avatar-frame">
+                <!-- Replace 'avatar.png' in this directory to change your profile picture -->
+                <img src="avatar.png" alt="Avatar" class="avatar-img" id="avatar-img" onerror="this.style.display='none'; document.getElementById('avatar-preview').style.display='flex';">
+                <div class="pixel-avatar" id="avatar-preview" style="display: none;">
+                  <span class="avatar-emoji">🥱</span>
+                </div>
+              </div>
+              <div class="profile-info">
+                <h2 class="user-handle">yawn<span class="moe-badge">gdd.moe</span></h2>
+                <div class="status-box">
+                  <span class="status-indicator">●</span>
+                  <span class="status-text">links and stuff</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="fieldset-box">
+              <legend class="fieldset-legend">Bio</legend>
+              <p class="bio-text">
+                Otaku still stuck in the early 2010s
+              </p>
+            </div>
+
+            <div class="quick-facts">
+              <div class="fact-row"><b>Location:</b> Chile</div>
+              <div class="fact-row"><b>Timezone:</b> UTC-3</div>
+              <div class="fact-row"><b>Can speak:</b> ESP/ENG (hetakuso JP too but let's not count it)</div>
+            </div>
+          </div>
+
+          <div class="tab-content hidden" id="tab-interests">
+            <div class="fieldset-box">
+              <legend class="fieldset-legend">Interests</legend>
+              <div class="tags-cloud">
+                <span class="tag">Oshikatsu</span>
+                <span class="tag">Mecha</span>
+                <span class="tag">Blue Archive</span>
+                <span class="tag">ZZZ</span>
+                <span class="tag">IM@S</span>
+                <a href="https://anilist.co/user/yawn156/" target="_blank" rel="noopener noreferrer" class="tag">Way too much anime ↗</a>
+                <span class="tag">Fighting games</span>
+                <span class="tag">Coop roguelikes</span>
+                <span class="tag">Idols</span>
+                <span class="tag">Mecha Musume</span>
+                <span class="tag">Mahou shoujo</span>
+                <span class="tag">Pre 2016 technology</span>
+                <span class="tag">The PS2 and NDS specifically</span>
+              </div>
+            </div>
+
+            <div class="fieldset-box">
+              <legend class="fieldset-legend">Current Projects</legend>
+              <ul class="retro-list">
+                <li>Messing around with Godot</li>
+                <li>Basic art design.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 2: MY LINKS -->
+    <div class="window" id="win-links">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="#3a6ea5" stroke="#000" stroke-width="1"/><ellipse cx="8" cy="8" rx="3" ry="6.5" fill="none" stroke="#fff" stroke-width="0.9"/><line x1="1.5" y1="8" x2="14.5" y2="8" stroke="#fff" stroke-width="0.9"/></svg></span> My Links
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p class="links-intro">Connect with me across the web:</p>
+
+        <div class="links-container">
+          <!-- Twitter -->
+          <a href="https://x.com/re_akuryo" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="#111"/></svg></div>
+            <div class="link-details">
+              <div class="link-title">Twitter</div>
+              <div class="link-sub">@re_akuryo</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/suriru164/" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="#c13584" stroke-width="2.2"/><circle cx="12" cy="12" r="4" fill="none" stroke="#c13584" stroke-width="2.2"/><circle cx="17.5" cy="6.5" r="1.3" fill="#c13584"/></svg></div>
+            <div class="link-details">
+              <div class="link-title">Instagram (plushies)</div>
+              <div class="link-sub">@suriru164</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/yawn156" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" fill="#181717"/></svg></div>
+            <div class="link-details">
+              <div class="link-title">GitHub</div>
+              <div class="link-sub">github.com/yawn156</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <!-- AniList -->
+          <a href="https://anilist.co/user/yawn156/" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="3" fill="#02a9ff"/><path d="M8.5 17L11 7h2l2.5 10h-2l-.5-2.2h-2l-.5 2.2zm3-4h1l-.5-2.5z" fill="#fff"/></svg></div>
+            <div class="link-details">
+              <div class="link-title">AniList</div>
+              <div class="link-sub">anilist.co/user/yawn156</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <!-- Steam -->
+          <a href="https://steamcommunity.com/id/re_akuryo/" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-icon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#171a21"/><circle cx="15" cy="9.5" r="3" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="9.5" cy="15.5" r="2.2" fill="none" stroke="#fff" stroke-width="1.6"/><line x1="11" y1="14" x2="13.5" y2="11.5" stroke="#fff" stroke-width="2"/></svg></div>
+            <div class="link-details">
+              <div class="link-title">Steam</div>
+              <div class="link-sub">steamcommunity.com/id/re_akuryo</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+
+          <!-- Blog (Disabled) -->
+          <!--
+          <a href="https://akuryotaisan.neocities.org/" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-details">
+              <div class="link-title">Blog</div>
+              <div class="link-sub">akuryotaisan.neocities.org</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+          -->
+
+          <!-- YT Music (Disabled) -->
+          <!--
+          <a href="https://music.youtube.com/@yawn1714" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-details">
+              <div class="link-title">YT Music</div>
+              <div class="link-sub">music.youtube.com/@yawn1714</div>
+            </div>
+            <span class="link-arrow">↗</span>
+          </a>
+          -->
+        </div>
+
+        <div class="status-bar">
+          <div class="status-field">5 links available</div>
+          <div class="status-field">Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW: MEDIA PLAYER (SUNFADED.MP3) -->
+    <div class="window" id="win-player">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="#d4d0c8" stroke="#000" stroke-width="1"/><circle cx="8" cy="8" r="2.5" fill="#fff" stroke="#000" stroke-width="0.9"/><circle cx="8" cy="8" r="1" fill="#000"/></svg></span> Media Player - SUNFADED.MP3
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <audio id="audio-player" src="SUNFADED.mp3" loop preload="auto"></audio>
+        <div class="player-display">
+          <div class="track-title" id="track-name">Track: SUNFADED.mp3</div>
+          <div class="visualizer" id="visualizer">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+          <div class="time-display" id="time-display">00:00 / 00:00</div>
+        </div>
+
+        <!-- Seek / timeline scrubber -->
+        <div class="seek-bar-container">
+          <input type="range" class="retro-range" id="seek-bar" min="0" max="100" value="0" step="0.5">
+        </div>
+
+        <div class="player-controls">
+          <button class="retro-button" id="btn-play">▶ Play</button>
+          <button class="retro-button" id="btn-stop">⏹ Stop</button>
+          <button class="retro-button btn-mute-toggle flashing-unmute" id="btn-mute" title="Click to Unmute / Toggle Mute">
+            <span id="mute-icon"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M2 6h3l4-3v10L5 10H2z" fill="#333"/><path d="M11 5l4 6M15 5l-4 6" stroke="#c00" stroke-width="1.8" stroke-linecap="square"/></svg></span> <span id="mute-text">Click to Unmute</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 3: README.TXT -->
+    <div class="window hidden" id="win-readme">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="2.5" y="1.5" width="11" height="13" fill="#fff" stroke="#000" stroke-width="1"/><rect x="2.5" y="1.5" width="3" height="3" fill="#4169e1"/><line x1="4.5" y1="6.5" x2="11.5" y2="6.5" stroke="#555" stroke-width="1"/><line x1="4.5" y1="9" x2="11.5" y2="9" stroke="#555" stroke-width="1"/><line x1="4.5" y1="11.5" x2="9" y2="11.5" stroke="#555" stroke-width="1"/></svg></span> aboutme.txt - Notepad
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="menu-bar">
+        <span class="menu-item"><u>F</u>ile</span>
+        <span class="menu-item"><u>E</u>dit</span>
+        <span class="menu-item"><u>S</u>earch</span>
+        <span class="menu-item"><u>H</u>elp</span>
+      </div>
+      <div class="window-body notepad-body">
+        <div class="notepad-textarea">============================================================
+Welcome
+============================================================
+28yo guy, I'm a data analyst with background in so many things that don't matter anymore.
+Even though the botnet won I still cling to a lot of out of touch practices and aesthetics.
+I love otaku culture and lately I've been really into im@s and oshikatsu so that's probably the most you'll see from me around, but I'm also a huge visual novel and mecha otaku!
+
+DM me for my priv or discord, just say hi wherever or something
+Sorry no questions box because those are evil... really!!!
+
+Watch Nadesico.
+- [yawn]</div>
+      </div>
+    </div>
+
+    <!-- WINDOW 4: RECYCLE BIN -->
+    <div class="window hidden" id="win-trash">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="3.5" y="4.5" width="9" height="9.5" fill="#ccc" stroke="#000" stroke-width="1"/><line x1="2.5" y1="3.5" x2="13.5" y2="3.5" stroke="#000" stroke-width="1.2"/><rect x="6" y="2" width="4" height="1.5" fill="#888" stroke="#000" stroke-width="0.8"/><line x1="6" y1="6.5" x2="6" y2="12" stroke="#444" stroke-width="1"/><line x1="8" y1="6.5" x2="8" y2="12" stroke="#444" stroke-width="1"/><line x1="10" y1="6.5" x2="10" y2="12" stroke="#444" stroke-width="1"/></svg></span> Recycle Bin
+        </div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize" class="btn-min">_</button>
+          <button aria-label="Maximize" class="btn-max">□</button>
+          <button aria-label="Close" class="btn-close">×</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="trash-container">
+          <div class="trash-item">
+            <span class="trash-icon">🖼️</span>
+            <span class="trash-name">image.png</span>
+          </div>
+          <div class="trash-item">
+            <span class="trash-icon">🎵</span>
+            <span class="trash-name">duvet.mp3</span>
+          </div>
+          <div class="trash-item">
+            <span class="trash-icon">🖼️</span>
+            <span class="trash-name">27.png</span>
+          </div>
+        </div>
+        <div class="window-footer">
+          <button class="retro-button" id="btn-empty-trash">Empty Bin</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATION POPUP (Dialog) -->
+    <div class="retro-dialog hidden" id="dialog-box">
+      <div class="dialog-content">
+        <div class="title-bar">
+          <div class="title-bar-text">Notification</div>
+          <button class="btn-close" id="btn-close-dialog">×</button>
+        </div>
+        <div class="dialog-body">
+          <div class="dialog-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#000080" stroke="#000" stroke-width="1.2"/><rect x="11" y="10" width="2" height="7" fill="#fff"/><rect x="11" y="6.5" width="2" height="2" fill="#fff"/></svg></div>
+          <div class="dialog-message" id="dialog-msg">Notification message</div>
+        </div>
+        <div class="dialog-actions">
+          <button class="retro-button active-btn" id="btn-dialog-ok">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHUT DOWN PROMPT WINDOW -->
+    <div class="retro-dialog hidden" id="shutdown-dialog">
+      <div class="dialog-content" style="width: 260px;">
+        <div class="title-bar">
+          <div class="title-bar-text">
+            <span class="title-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="2" y="2" width="12" height="9" fill="#d4d0c8" stroke="#000" stroke-width="1"/><rect x="3.5" y="3.5" width="9" height="6" fill="#008080"/><rect x="5" y="12" width="6" height="2" fill="#808080" stroke="#000" stroke-width="0.8"/></svg></span> Shut Down Bimbows
+          </div>
+        </div>
+        <div class="dialog-body" style="padding: 20px 16px;">
+          <div class="dialog-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3v8" stroke="#c00" stroke-width="2.5" stroke-linecap="round"/><path d="M6.8 6.3a8 8 0 1 0 10.4 0" fill="none" stroke="#c00" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+          <div class="dialog-message" id="shutdown-prompt-msg" style="font-size: 13px; font-weight: bold;">byebye</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /desktop -->
+
+  <div id="crt-overlay" class="crt-overlay" aria-hidden="true"></div>
+
+  <!-- START MENU POPUP -->
+  <div class="start-menu hidden" id="start-menu">
+    <div class="start-menu-sidebar">
+      <span class="sidebar-text"><b>Bimbows</b>98</span>
+    </div>
+    <div class="start-menu-items">
+      <div class="menu-entry" data-action="open-about">
+        <span class="menu-entry-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1" y="2" width="14" height="12" rx="1" fill="#fff" stroke="#000" stroke-width="1"/><rect x="1" y="2" width="14" height="3" fill="#000080"/><circle cx="5" cy="9" r="2" fill="#000080"/><path d="M2.5 13 Q5 11 7.5 13" fill="#000080"/><line x1="9" y1="8" x2="13.5" y2="8" stroke="#333" stroke-width="1.2"/><line x1="9" y1="11" x2="13" y2="11" stroke="#333" stroke-width="1.2"/></svg></span>
+        <span class="menu-entry-label">Profile</span>
+      </div>
+      <div class="menu-entry" data-action="open-links">
+        <span class="menu-entry-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="#3a6ea5" stroke="#000" stroke-width="1"/><ellipse cx="8" cy="8" rx="3" ry="6.5" fill="none" stroke="#fff" stroke-width="0.9"/><line x1="1.5" y1="8" x2="14.5" y2="8" stroke="#fff" stroke-width="0.9"/></svg></span>
+        <span class="menu-entry-label">My Links</span>
+      </div>
+      <div class="menu-entry" data-action="open-player">
+        <span class="menu-entry-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="#d4d0c8" stroke="#000" stroke-width="1"/><circle cx="8" cy="8" r="2.5" fill="#fff" stroke="#000" stroke-width="0.9"/><circle cx="8" cy="8" r="1" fill="#000"/></svg></span>
+        <span class="menu-entry-label">Media Player</span>
+      </div>
+      <div class="menu-entry" data-action="open-readme">
+        <span class="menu-entry-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="2.5" y="1.5" width="11" height="13" fill="#fff" stroke="#000" stroke-width="1"/><rect x="2.5" y="1.5" width="3" height="3" fill="#4169e1"/><line x1="4.5" y1="6.5" x2="11.5" y2="6.5" stroke="#555" stroke-width="1"/><line x1="4.5" y1="9" x2="11.5" y2="9" stroke="#555" stroke-width="1"/><line x1="4.5" y1="11.5" x2="9" y2="11.5" stroke="#555" stroke-width="1"/></svg></span>
+        <span class="menu-entry-label">aboutme.txt</span>
+      </div>
+      <div class="menu-entry" data-action="toggle-crt">
+        <span class="menu-entry-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="1.5" y="2" width="13" height="10" fill="#222" stroke="#000" stroke-width="1"/><rect x="3" y="3.5" width="10" height="7" fill="#008080"/><line x1="3" y1="5.5" x2="13" y2="5.5" stroke="#000" stroke-opacity="0.35" stroke-width="1"/><line x1="3" y1="8.5" x2="13" y2="8.5" stroke="#000" stroke-opacity="0.35" stroke-width="1"/><rect x="5.5" y="12.5" width="5" height="1.5" fill="#666"/></svg></span>
+        <span class="menu-entry-label">CRT Scanlines</span>
+        <span class="menu-status" id="crt-status">ON</span>
+      </div>
+      <div class="menu-divider"></div>
+      <div class="menu-entry" data-action="shutdown">
+        <span class="menu-entry-icon"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2v5" stroke="#c00" stroke-width="1.8" stroke-linecap="round"/><path d="M4.5 4.2a5.2 5.2 0 1 0 7 0" fill="none" stroke="#c00" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <span class="menu-entry-label">Shut Down...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TASKBAR -->
+  <div id="taskbar">
+    <button class="start-button" id="start-button">
+      <svg class="win-logo" viewBox="0 0 16 16" width="16" height="16">
+        <rect x="1" y="1" width="6" height="6" fill="#f25022"/>
+        <rect x="9" y="1" width="6" height="6" fill="#7fba00"/>
+        <rect x="1" y="9" width="6" height="6" fill="#00a4ef"/>
+        <rect x="9" y="9" width="6" height="6" fill="#ffb900"/>
+      </svg>
+      <span>Start</span>
+    </button>
+
+    <div class="taskbar-divider"></div>
+
+    <!-- Active Window Task Buttons -->
+    <div class="taskbar-tasks" id="taskbar-tasks">
+      <!-- Injected dynamically via script.js -->
+    </div>
+
+    <!-- System Tray -->
+    <div class="system-tray">
+      <span class="tray-clock" id="tray-clock">12:00 PM</span>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

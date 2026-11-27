@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "meishi",
+  "compatibility_date": "2026-11-26",
+  "assets": {
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    {
+      "pattern": "yawn.gdd.moe",
+      "custom_domain": true
+    }
+  ]
+}

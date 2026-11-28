@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "deploy": "vite build && wrangler deploy"
+    "deploy": "vite build && wrangler deploy",
+    "analytics": "node scripts/analytics.mjs"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.70.2",
